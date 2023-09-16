@@ -1,5 +1,5 @@
 'use client'
-import * as React from 'react'
+import { useState } from 'react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import 'dayjs/locale/es'
@@ -13,6 +13,11 @@ export default function Calendar() {
     const day = date.day()
     return day === 0 || day === 6
   }
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null)
+
+  const handleDateChange = (date: Dayjs | null) => {
+    setSelectedDate(date)
+  }
 
   return (
     <LocalizationProvider adapterLocale="es" dateAdapter={AdapterDayjs}>
@@ -23,7 +28,12 @@ export default function Calendar() {
         shouldDisableDate={isWeekend}
         disablePast
         className="text-blue"
+        value={selectedDate}
+        onChange={handleDateChange}
       />
+      {selectedDate && (
+        <div>Fecha seleccionada: {selectedDate.format('DD/MM/YYYY')}</div>
+      )}
     </LocalizationProvider>
   )
 }

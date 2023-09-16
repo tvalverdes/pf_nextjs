@@ -9,6 +9,7 @@ import { Raleway } from 'next/font/google'
 import Calendar from './components/sidebar/Calendar'
 import { Container } from '@mui/material'
 import { AdviserData } from './components/sidebar/adviserData'
+import { TimeSelect } from './components/sidebar/Time-Select'
 
 const raleway = Raleway({ subsets: ['latin'], weight: '700' })
 
@@ -18,9 +19,15 @@ export default function Home() {
       <Navbar />
       <section className="w-full flex">
         <div className="hidden md:w-2/3 md:flex">asdsa</div>
-        <div className="w-full flex p-11 flex-col bg-white border-2 h-full md:w-1/3">
-          <AdviserData />
-          <Calendar />
+        <div className="flex w-full p-11 flex-col bg-white border-2 h-full md:w-fit">
+          <div>
+            <p>HORARIOS DE ANDRÉS</p>
+          </div>
+          <div className="w-auto bg-white border-2">
+            <AdviserData />
+            <Calendar />
+            <TimeSelect />
+          </div>
         </div>
       </section>
     </main>
