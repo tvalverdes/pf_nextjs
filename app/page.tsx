@@ -1,9 +1,6 @@
 import Image from 'next/image'
 import Navbar from './components/navigation/Navbar'
-import '@fontsource/roboto/300.css'
-import '@fontsource/roboto/400.css'
-import '@fontsource/roboto/500.css'
-import '@fontsource/roboto/700.css'
+
 import Calendar from './components/sidebar/Calendar'
 import { AdviserData } from './components/sidebar/adviserData'
 import { PayButton } from './components/sidebar/PayButton'
