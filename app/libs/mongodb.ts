@@ -2,9 +2,10 @@ import mongoose from 'mongoose'
 
 const connectMongoDB = async () => {
   try {
-    await mongoose.connect(
-      'mongodb+srv://tvalverdes9:ZnZYd9dpDvu1YxbS@cluster0.9memoco.mongodb.net/?retryWrites=true&w=majority'
-    )
+    if (!process.env.MONGODB_URI) {
+      throw new Error('URI not found')
+    }
+    await mongoose.connect(process.env.MONGODB_URI)
   } catch (error) {
     console.log(error)
   }
