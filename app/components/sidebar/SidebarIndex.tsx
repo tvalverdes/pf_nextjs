@@ -9,7 +9,7 @@ import { getAppointments } from '@/app/libs/supabase'
 import Appointment from '@/app/models/appointment'
 export const SidebarIndex = () => {
   useEffect(() => {
-    fetch('https://pfback.000webhostapp.com/')
+    fetch('https://pasionporlasfinanzas.com/apirest/')
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((error) => console.error(error))
