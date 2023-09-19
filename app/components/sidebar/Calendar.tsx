@@ -6,9 +6,21 @@ import 'dayjs/locale/es'
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import dayjs, { Dayjs } from 'dayjs'
 import { TimeSelect } from './TimeSelect'
+import { useEffect } from 'react'
+import { API_URL } from '@/app/config'
 
 export default function Calendar() {
   const tomorrow = dayjs().add(1, 'day')
+  const lastDayOfMonth = dayjs().endOf('month')
+
+  useEffect(() => {
+    const month = dayjs().month() + 1
+    console.log(`${API_URL}?month=${month}`)
+    fetch(`${API_URL}?month=${month}`)
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error(error))
+  }, [])
 
   const isWeekend = (date: Dayjs) => {
     const day = date.day()
@@ -33,6 +45,7 @@ export default function Calendar() {
             shouldDisableDate={isWeekend}
             disablePast
             className="calendar"
+            maxDate={lastDayOfMonth}
             value={selectedDate}
             onChange={handleDateChange}
           />
