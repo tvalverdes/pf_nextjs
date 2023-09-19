@@ -8,16 +8,14 @@ import {
 } from '@mui/material'
 import { useState } from 'react'
 
-export const TimeSelect = (props: { chosenDate: boolean }) => {
+export const TimeSelect = (props: { chosenDate: boolean; hours: any }) => {
   const [time, setTime] = useState('')
-
   const handleChange = (event: SelectChangeEvent) => {
-    console.log(event.target.value as string)
     setTime(event.target.value as string)
   }
   return (
     <>
-      <FormControl fullWidth disabled={!props.chosenDate}>
+      <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">
           {props.chosenDate ? 'Horario' : 'Selecciona un horario'}
         </InputLabel>
@@ -28,8 +26,13 @@ export const TimeSelect = (props: { chosenDate: boolean }) => {
           label="Horario"
           onChange={handleChange}
         >
-          <MenuItem value={'8:00 PM'}>8:00 PM</MenuItem>
-          <MenuItem value={'9:00 PM'}>9:00 PM</MenuItem>
+          {props.hours.map((hour: any, index: number) => {
+            return (
+              <MenuItem key={index} value={hour}>
+                {hour}
+              </MenuItem>
+            )
+          })}
         </Select>
       </FormControl>
       <p className="timezone">

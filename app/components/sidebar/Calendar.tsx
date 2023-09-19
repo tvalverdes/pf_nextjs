@@ -7,31 +7,42 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import dayjs, { Dayjs } from 'dayjs'
 import { TimeSelect } from './TimeSelect'
 import { useEffect } from 'react'
-import { API_URL } from '@/app/config'
+import { getSchedule } from '@/app/libs/get-schedule'
+import { getMatchingTimes } from '@/app/utils/date-filter'
 
 export default function Calendar() {
   const tomorrow = dayjs().add(1, 'day')
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(
+    dayjs(tomorrow)
+  )
+  const [chosenDate, setChosenDate] = useState(false)
   const lastDayOfMonth = dayjs().endOf('month')
+  const arr: any[] = []
+  const [schedule, setSchedule] = useState(arr)
 
   useEffect(() => {
-    const month = dayjs().month() + 1
-    console.log(`${API_URL}?month=${month}`)
-    fetch(`${API_URL}?month=${month}`)
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error))
+    const fetchData = async () => {
+      try {
+        const datos = await getSchedule()
+        setSchedule(datos)
+      } catch (error) {
+        console.error('Error al obtener datos:', error)
+      }
+    }
+    fetchData()
   }, [])
 
   const isWeekend = (date: Dayjs) => {
     const day = date.day()
     return day === 0 || day === 6
   }
-  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null)
-  const [chosenDate, setChosenDate] = useState(false)
 
   const handleDateChange = (date: Dayjs | null) => {
     setSelectedDate(date)
     setChosenDate(true)
+  }
+  if (!selectedDate) {
+    return 'nada'
   }
 
   return (
@@ -39,6 +50,7 @@ export default function Calendar() {
       <div className="w-full flex flex-col items-center">
         <LocalizationProvider adapterLocale="es" dateAdapter={AdapterDayjs}>
           <DateCalendar
+            defaultValue={dayjs('2023-09-21')}
             views={['day']}
             autoFocus
             minDate={tomorrow}
@@ -50,7 +62,10 @@ export default function Calendar() {
             onChange={handleDateChange}
           />
         </LocalizationProvider>
-        <TimeSelect chosenDate={chosenDate} />
+        <TimeSelect
+          chosenDate={chosenDate}
+          hours={getMatchingTimes(selectedDate.format('YYYY-MM-DD'), schedule)}
+        />
       </div>
     </div>
   )
