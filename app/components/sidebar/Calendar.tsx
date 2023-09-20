@@ -8,14 +8,13 @@ import dayjs, { Dayjs } from 'dayjs'
 import { TimeSelect } from './TimeSelect'
 import { useEffect } from 'react'
 import { getSchedule } from '@/app/libs/get-schedule'
-import { getMatchingTimes } from '@/app/utils/date-filter'
+import { getMatchingTimes, isWeekend } from '@/app/utils/date-filter'
 
 export default function Calendar() {
   const tomorrow = dayjs().add(1, 'day')
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(
     dayjs(tomorrow)
   )
-  const [chosenDate, setChosenDate] = useState(false)
   const lastDayOfMonth = dayjs().endOf('month')
   const arr: any[] = []
   const [schedule, setSchedule] = useState(arr)
@@ -32,18 +31,20 @@ export default function Calendar() {
     fetchData()
   }, [])
 
-  const isWeekend = (date: Dayjs) => {
-    const day = date.day()
-    return day === 0 || day === 6
-  }
-
   const handleDateChange = (date: Dayjs | null) => {
-    setSelectedDate(date)
-    setChosenDate(true)
+    if (date && selectedDate) {
+      if (date.format('YYYY-MM-DD') != selectedDate.format('YYYY-MM-DD')) {
+        setSelectedDate(date)
+      }
+    }
   }
   if (!selectedDate) {
     return 'nada'
   }
+  let freeHoursOfDate = getMatchingTimes(
+    selectedDate.format('YYYY-MM-DD'),
+    schedule
+  )
 
   return (
     <div className="flex-col justify-center items-center">
@@ -62,10 +63,7 @@ export default function Calendar() {
             onChange={handleDateChange}
           />
         </LocalizationProvider>
-        <TimeSelect
-          chosenDate={chosenDate}
-          hours={getMatchingTimes(selectedDate.format('YYYY-MM-DD'), schedule)}
-        />
+        <TimeSelect hours={freeHoursOfDate} />
       </div>
     </div>
   )

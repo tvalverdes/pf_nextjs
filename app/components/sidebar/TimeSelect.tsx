@@ -8,17 +8,18 @@ import {
 } from '@mui/material'
 import { useState } from 'react'
 
-export const TimeSelect = (props: { chosenDate: boolean; hours: any }) => {
+export const TimeSelect = (props: { hours: any }) => {
   const [time, setTime] = useState('')
+  console.log(props.hours)
   const handleChange = (event: SelectChangeEvent) => {
     setTime(event.target.value as string)
   }
+  //CUANDO HAY UN VALOR SELECCIONADOEN EL INPUT TIME
+  //Y SE SELECCIONA OTRA FECHA, ESTE VALOR SE MANTIENE, CAMBIAR ESO
   return (
     <>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">
-          {props.chosenDate ? 'Horario' : 'Selecciona un horario'}
-        </InputLabel>
+        <InputLabel id="demo-simple-select-label">Horario</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"

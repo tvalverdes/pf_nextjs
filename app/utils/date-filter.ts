@@ -1,4 +1,4 @@
-import dayjs from 'dayjs'
+import dayjs, { Dayjs } from 'dayjs'
 
 export function getMatchingTimes(selectedDate: string, schedule: any[] = []) {
   if (!selectedDate) {
@@ -11,4 +11,9 @@ export function getMatchingTimes(selectedDate: string, schedule: any[] = []) {
   })
   const times = matchingTimes.map((item) => item.time)
   return times
+}
+
+export const isWeekend = (date: Dayjs) => {
+  const day = date.day()
+  return day === 0 || day === 6
 }

@@ -1,13 +1,13 @@
 import TextField from '@mui/material/TextField'
 
-export const InputField = () => {
+export const InputField = (props:{name: string, placeholder: string}) => {
   return (
     <TextField
       required
       fullWidth
       id="standard-required"
-      label="Nombre"
-      placeholder="Nombre Completo"
+      label={props.name}
+      placeholder={props.placeholder}
       variant="outlined"
     />
   )
