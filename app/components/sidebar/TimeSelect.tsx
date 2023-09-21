@@ -12,20 +12,20 @@ import { useAppointmentContext } from './context'
 export const TimeSelect = (props: { hours: any }) => {
   const { appointment, updateAppointment } = useAppointmentContext()
   const [time, setTime] = useState(appointment.time || '')
+  const [timeSelected, setTimeSelected] = useState(false)
 
   const handleTimeChange = (event: SelectChangeEvent<string>) => {
     const newTime = event.target.value
-    setTime(newTime)
     updateAppointment({ ...appointment, time: newTime })
+    setTime(newTime)
+    newTime == '' ? setTimeSelected(false) : setTimeSelected(true)
   }
 
   useEffect(() => {
     setTime('')
     updateAppointment({ ...appointment, time: '' })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointment.date])
-  //CUANDO HAY UN VALOR SELECCIONADOEN EL INPUT TIME
-  //Y SE SELECCIONA OTRA FECHA, ESTE VALOR SE MANTIENE, CAMBIAR ESO
   return (
     <>
       <FormControl fullWidth>
@@ -36,6 +36,8 @@ export const TimeSelect = (props: { hours: any }) => {
           value={time}
           label="Horario"
           onChange={handleTimeChange}
+          color={timeSelected ? 'success' : 'error'}
+          error={!timeSelected}
         >
           {props.hours.map((hour: any, index: number) => {
             return (

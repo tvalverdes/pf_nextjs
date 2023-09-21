@@ -16,9 +16,8 @@ export interface Appointment {
   time: string
 }
 
-interface ContextType {
-  appointment: Appointment
-  updateAppointment: (newAppointment: Appointment) => void
+export interface isValid {
+  valid: boolean
 }
 
 export const SidebarIndex = () => {
