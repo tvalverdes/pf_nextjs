@@ -9,6 +9,7 @@ import { TimeSelect } from './TimeSelect'
 import { useEffect } from 'react'
 import { getSchedule } from '@/app/libs/get-schedule'
 import { getMatchingTimes, isWeekend } from '@/app/utils/date-filter'
+import { useAppointmentContext } from './context'
 
 export default function Calendar() {
   const tomorrow = dayjs().add(1, 'day')
@@ -18,6 +19,16 @@ export default function Calendar() {
   const lastDayOfMonth = dayjs().endOf('month')
   const arr: any[] = []
   const [schedule, setSchedule] = useState(arr)
+
+  const { appointment, updateAppointment } = useAppointmentContext()
+  const handleDateChange = (value: Dayjs | null) => {
+    if (value && selectedDate) {
+      if (value.format('YYYY-MM-DD') != selectedDate.format('YYYY-MM-DD')) {
+        setSelectedDate(value)
+        updateAppointment({ ...appointment, date: value.format('YYYY-MM-DD') })
+      }
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,13 +42,6 @@ export default function Calendar() {
     fetchData()
   }, [])
 
-  const handleDateChange = (date: Dayjs | null) => {
-    if (date && selectedDate) {
-      if (date.format('YYYY-MM-DD') != selectedDate.format('YYYY-MM-DD')) {
-        setSelectedDate(date)
-      }
-    }
-  }
   if (!selectedDate) {
     return 'nada'
   }
@@ -51,7 +55,6 @@ export default function Calendar() {
       <div className="w-full flex flex-col items-center">
         <LocalizationProvider adapterLocale="es" dateAdapter={AdapterDayjs}>
           <DateCalendar
-            defaultValue={dayjs('2023-09-21')}
             views={['day']}
             autoFocus
             minDate={tomorrow}

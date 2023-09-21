@@ -6,14 +6,24 @@ import {
   MenuItem,
   SelectChangeEvent,
 } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useAppointmentContext } from './context'
 
 export const TimeSelect = (props: { hours: any }) => {
-  const [time, setTime] = useState('')
-  console.log(props.hours)
-  const handleChange = (event: SelectChangeEvent) => {
-    setTime(event.target.value as string)
+  const { appointment, updateAppointment } = useAppointmentContext()
+  const [time, setTime] = useState(appointment.time || '')
+
+  const handleTimeChange = (event: SelectChangeEvent<string>) => {
+    const newTime = event.target.value
+    setTime(newTime)
+    updateAppointment({ ...appointment, time: newTime })
   }
+
+  useEffect(() => {
+    setTime('')
+    updateAppointment({ ...appointment, time: '' })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appointment.date])
   //CUANDO HAY UN VALOR SELECCIONADOEN EL INPUT TIME
   //Y SE SELECCIONA OTRA FECHA, ESTE VALOR SE MANTIENE, CAMBIAR ESO
   return (
@@ -25,7 +35,7 @@ export const TimeSelect = (props: { hours: any }) => {
           id="demo-simple-select"
           value={time}
           label="Horario"
-          onChange={handleChange}
+          onChange={handleTimeChange}
         >
           {props.hours.map((hour: any, index: number) => {
             return (
