@@ -7,10 +7,11 @@ import {
   SelectChangeEvent,
 } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useAppointmentContext } from './context'
+import { useAppointmentContext, useFormContext } from './context'
 
 export const TimeSelect = (props: { hours: any }) => {
   const { appointment, updateAppointment } = useAppointmentContext()
+  const { validForm, updateValidForm } = useFormContext()
   const [time, setTime] = useState(appointment.time || '')
   const [timeSelected, setTimeSelected] = useState(false)
 
@@ -18,12 +19,19 @@ export const TimeSelect = (props: { hours: any }) => {
     const newTime = event.target.value
     updateAppointment({ ...appointment, time: newTime })
     setTime(newTime)
-    newTime == '' ? setTimeSelected(false) : setTimeSelected(true)
+    if (newTime == '') {
+      setTimeSelected(false)
+      updateValidForm({ ...validForm, validTime: false })
+    } else {
+      setTimeSelected(true)
+      updateValidForm({ ...validForm, validTime: true })
+    }
   }
 
   useEffect(() => {
     setTime('')
     updateAppointment({ ...appointment, time: '' })
+    updateValidForm({ ...validForm, validTime: false })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointment.date])
   return (
@@ -34,6 +42,7 @@ export const TimeSelect = (props: { hours: any }) => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={time}
+          required
           label="Horario"
           onChange={handleTimeChange}
           color={timeSelected ? 'success' : 'error'}
