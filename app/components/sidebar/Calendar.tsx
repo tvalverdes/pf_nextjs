@@ -7,7 +7,7 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import dayjs, { Dayjs } from 'dayjs'
 import { TimeSelect } from './TimeSelect'
 import { useEffect } from 'react'
-import { getSchedule } from '@/app/libs/get-schedule'
+import { getSchedule } from '@/app/libs/schedule'
 import { getMatchingTimes, isWeekend } from '@/app/utils/date-filter'
 import { useAppointmentContext } from './context'
 

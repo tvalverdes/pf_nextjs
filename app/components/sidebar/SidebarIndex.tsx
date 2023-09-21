@@ -8,6 +8,7 @@ import { FormContext, SidebarContext } from './context'
 import { InputField } from './InputField'
 import { MailField } from './MailField'
 import dayjs, { Dayjs } from 'dayjs'
+import { addAppointment } from '@/app/libs/schedule'
 
 export interface Appointment {
   client_name: string
@@ -40,39 +41,14 @@ export const SidebarIndex = () => {
   const isAllTrue = Object.values(isValid).every((value) => value === true)
 
   const updateAppointment = (newAppointment: Appointment) => {
-    console.log(newAppointment)
     setAppointment(newAppointment)
   }
   const updateIsValid = (newIsValid: ValidForm) => {
-    console.log(newIsValid)
     setIsValid(newIsValid)
   }
 
   const onSubmit = async (values: any) => {
-    // Hacer la petición POST al servidor
-    try {
-      console.log(JSON.stringify(appointment))
-      const response = await fetch(
-        'https://pasionporlasfinanzas.com/apirest/',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(appointment), // Convierte el objeto a formato JSON
-        }
-      )
-      if (response.ok) {
-        console.log('Peticion POST exitosa')
-        // Realizar acciones adicionales si la petición fue exitosa
-      } else {
-        console.error('Error en la petición POST response.ok')
-        // Realizar acciones adicionales en caso de error
-      }
-    } catch (error) {
-      console.error('Error en la petición POST try-catch:', error)
-      // Manejar el error de la petición
-    }
+    addAppointment(appointment)
   }
 
   return (

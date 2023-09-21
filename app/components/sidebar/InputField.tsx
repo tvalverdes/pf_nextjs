@@ -9,7 +9,7 @@ export const InputField = () => {
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newName = event.target.value
     updateAppointment({ ...appointment, client_name: newName.trim() })
-    const regex = /^[A-Za-z\s]*$/
+    const regex = /^[A-Za-zÁáÉéÍíÓóÚúÜüÑñ\s]*$/
 
     if (!regex.test(newName)) {
       setHelper('No ingreses caracteres especiales')
