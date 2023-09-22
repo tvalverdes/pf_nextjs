@@ -31,7 +31,7 @@ const benefits = [
 
 export const LeftSide = () => {
   return (
-    <div className="hidden flex-col px-4 bg-[#e7ecef] items-center md:w-3/4 gap-5 h-screen overflow-hidden md:flex">
+    <div className="hidden flex-col px-4 bg-[#e7ecef] items-center md:w-3/4 gap-5 overflow-hidden md:flex">
       <h1 className="text-xl pt-5 text-[#42494BE0]">ASESORÍA FINANCIERA</h1>
       <h2 className="text-xl pb-5 lg:text-2xl flex">
         <b className="text-[#0090D4]">Ventajas&nbsp;</b> de asesorarte con

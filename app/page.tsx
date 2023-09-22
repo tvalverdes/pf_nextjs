@@ -9,7 +9,7 @@ export default function Home() {
       <Navbar />
       <section className="w-full flex">
         <LeftSide />
-        <div className="flex flex-col w-full px-3 pt-2 bg-white h-full md:w-1/4 md:px-5">
+        <div className="flex flex-col w-full md:w-2/4 px-3 pt-2 bg-white h-full lg:w-2/4 xl:md:w-1/4 md:px-5">
           <p>HORARIOS DE ANDRÉS</p>
           <SidebarIndex />
         </div>
