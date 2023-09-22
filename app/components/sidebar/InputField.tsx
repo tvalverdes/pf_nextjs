@@ -17,6 +17,9 @@ export const InputField = () => {
     } else if (newName.length <= 3) {
       setHelper('Nombre completo')
       updateValidForm({ ...validForm, validName: false })
+    } else if (newName.length > 100) {
+      setHelper('No ingreses más de 100 caracteres')
+      updateValidForm({ ...validForm, validName: false })
     } else {
       setHelper('')
       updateValidForm({ ...validForm, validName: true })

@@ -75,7 +75,7 @@ export const SidebarIndex = () => {
               disabled={!isAllTrue}
               type="submit"
               variant="contained"
-              className="main-bg-color mt-2"
+              className="main-bg-color mb-5 mx-2"
             >
               Separar Asesoría
             </Button>

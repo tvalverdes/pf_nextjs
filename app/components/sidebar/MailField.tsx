@@ -12,8 +12,11 @@ export const MailField = () => {
     updateAppointment({ ...appointment, client_mail: newMail.trim() })
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,3}$/i
     if (!emailRegex.test(newMail)) {
-      setHelper('Error de caracteres')
+      setHelper('Ingresa un correo válido')
       updateValidForm({ ...validForm, validMail: false })
+    } else if (newMail.length > 100) {
+      setHelper('Ingresa menos de 100 caracteres')
+      updateValidForm({ ...validForm, validName: false })
     } else {
       setHelper('')
       updateValidForm({ ...validForm, validMail: true })
