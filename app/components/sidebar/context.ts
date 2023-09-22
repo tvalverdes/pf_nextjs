@@ -27,17 +27,3 @@ export function useFormContext() {
   }
   return context
 }
-
-/* import { createContext, useContext } from 'react'
-import { Appointment } from './SidebarIndex'
-
-export const SidebarContext = createContext<Appointment | undefined>(undefined)
-
-export function useAppointmentContext() {
-  const appointment = useContext(SidebarContext)
-  if (appointment === undefined) {
-    throw new Error('useUserContext debe usarse con un SidebarContext')
-  }
-  return appointment
-}
- */

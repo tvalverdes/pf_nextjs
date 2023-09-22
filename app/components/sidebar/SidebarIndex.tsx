@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import Calendar from './Calendar'
+import { Calendar } from './Calendar'
 import { AdviserData } from './adviserData'
 import { TextField, Button } from '@mui/material'
 import { useForm, Controller, FormProvider } from 'react-hook-form'
@@ -9,6 +9,7 @@ import { InputField } from './InputField'
 import { MailField } from './MailField'
 import dayjs, { Dayjs } from 'dayjs'
 import { addAppointment } from '@/app/libs/schedule'
+import { getNextValidDate } from '@/app/utils/date-filter'
 
 export interface Appointment {
   client_name: string
@@ -29,7 +30,7 @@ export const SidebarIndex = () => {
   const [appointment, setAppointment] = useState<Appointment>({
     client_name: '',
     client_mail: '',
-    date: dayjs().add(1, 'day').format('YYYY-MM-DD'),
+    date: getNextValidDate(dayjs()).format('YYYY-MM-DD'),
     time: '',
   })
   const [isValid, setIsValid] = useState<ValidForm>({
@@ -52,8 +53,10 @@ export const SidebarIndex = () => {
   }
 
   return (
-    <>
-      <AdviserData />
+    <div>
+      <div>
+        <AdviserData />
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-4 bg-white"
@@ -72,13 +75,13 @@ export const SidebarIndex = () => {
               disabled={!isAllTrue}
               type="submit"
               variant="contained"
-              className="main-bg-color w-full mt-5"
+              className="main-bg-color mt-2"
             >
               Separar Asesoría
             </Button>
           </FormContext.Provider>
         </SidebarContext.Provider>
       </form>
-    </>
+    </div>
   )
 }

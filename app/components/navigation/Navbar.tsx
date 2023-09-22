@@ -21,7 +21,7 @@ const Navbar = () => {
   }
   return (
     <>
-      <header className="w-full h-20 bg-white sticky top-0">
+      <header className="w-full h-20 bg-white top-0">
         <div className="container mx-auto px-4 h-full">
           <div
             className={`flex ${
@@ -52,9 +52,9 @@ const Navbar = () => {
           <div
             className={`${
               isMobile ? '' : 'hidden'
-            } md:hidden flex justify-end mt-5 items-center h-full`}
+            } md:hidden bg-white absolute justify-end items-center w-full z-10 h-screen`}
           >
-            <ul className="text-black flex flex-col gap-y-5">
+            <ul className="text-black flex flex-col ps-4 gap-y-5">
               {items.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}>

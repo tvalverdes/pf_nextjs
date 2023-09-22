@@ -28,7 +28,6 @@ export const InputField = () => {
       required
       type="text"
       fullWidth
-      id="standard-required"
       label="Nombre"
       placeholder="Ingresa tu nombre"
       variant="outlined"

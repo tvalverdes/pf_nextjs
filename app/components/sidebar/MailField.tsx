@@ -25,7 +25,6 @@ export const MailField = () => {
       required
       type="email"
       fullWidth
-      id="standard-required"
       label="Correo"
       placeholder="Ingresa tu correo"
       variant="outlined"

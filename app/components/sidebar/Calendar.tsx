@@ -8,14 +8,19 @@ import dayjs, { Dayjs } from 'dayjs'
 import { TimeSelect } from './TimeSelect'
 import { useEffect } from 'react'
 import { getSchedule } from '@/app/libs/schedule'
-import { getMatchingTimes, isWeekend } from '@/app/utils/date-filter'
+import {
+  getMatchingTimes,
+  getNextValidDate,
+  isWeekend,
+} from '@/app/utils/date-filter'
 import { useAppointmentContext } from './context'
 
-export default function Calendar() {
+export function Calendar() {
   const tomorrow = dayjs().add(1, 'day')
-  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(
-    dayjs(tomorrow)
-  )
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(() => {
+    const date = getNextValidDate(dayjs())
+    return date
+  })
   const lastDayOfMonth = dayjs().endOf('month')
   const arr: any[] = []
   const [schedule, setSchedule] = useState(arr)
@@ -45,6 +50,14 @@ export default function Calendar() {
   if (!selectedDate) {
     return 'nada'
   }
+
+  let minDate = tomorrow
+
+  if (isWeekend(minDate)) {
+    // Si el día siguiente es fin de semana, obtenemos el próximo lunes
+    minDate = getNextValidDate(minDate)
+  }
+
   let freeHoursOfDate = getMatchingTimes(
     selectedDate.format('YYYY-MM-DD'),
     schedule
@@ -60,7 +73,7 @@ export default function Calendar() {
             minDate={tomorrow}
             shouldDisableDate={isWeekend}
             disablePast
-            className="calendar"
+            className="calendar flex justify-around place-content-around content-around"
             maxDate={lastDayOfMonth}
             value={selectedDate}
             onChange={handleDateChange}

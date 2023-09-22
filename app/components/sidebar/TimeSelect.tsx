@@ -37,9 +37,9 @@ export const TimeSelect = (props: { hours: any }) => {
   return (
     <>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Horario</InputLabel>
+        <InputLabel id="select-label">Horario</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
+          labelId="select-label"
           id="demo-simple-select"
           value={time}
           required
