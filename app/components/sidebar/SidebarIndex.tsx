@@ -10,6 +10,7 @@ import { MailField } from './MailField'
 import dayjs, { Dayjs } from 'dayjs'
 import { addAppointment } from '@/app/libs/schedule'
 import { getNextValidDate } from '@/app/utils/date-filter'
+import { sendToIzi } from '@/app/libs/izi'
 
 export interface Appointment {
   client_name: string
@@ -48,7 +49,8 @@ export const SidebarIndex = () => {
   }
 
   const onSubmit = async (values: any) => {
-    addAppointment(appointment)
+    //addAppointment(appointment)
+    sendToIzi(appointment)
   }
 
   return (
