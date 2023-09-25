@@ -22,6 +22,10 @@ export async function sendToIzi(appointment: Appointment) {
       cancelUrl: 'https://pasionporlasfinanzas.com',
       successUrl: 'https://pasionporlasfinanzas.com/blog',
     }
+    console.log(IZI_URL)
+    console.log(TEST_KEY)
+    console.log(data)
+    console.log(JSON.stringify(data))
     const response = await fetch(IZI_URL, {
       method: 'POST',
       headers: {
@@ -31,9 +35,7 @@ export async function sendToIzi(appointment: Appointment) {
 
       body: JSON.stringify(data),
     })
-    console.log(IZI_URL)
-    console.log(TEST_KEY)
-    console.log(data)
+
     if (response.ok) {
       console.log(response.json())
       /* const responseData: PaymentResponse = await response.json()
