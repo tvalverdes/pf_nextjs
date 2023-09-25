@@ -40,6 +40,7 @@ export async function sendToIzi(appointment: Appointment) {
       // Realizar acciones adicionales si la petición fue exitosa
     } else {
       console.error('Error en la petición POST response.ok')
+      console.log(response)
       // Realizar acciones adicionales en caso de error
     }
   } catch (error) {
