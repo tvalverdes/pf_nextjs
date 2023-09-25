@@ -3,9 +3,8 @@ import { API_URL } from '@/app/config'
 import { Appointment } from '../components/sidebar/SidebarIndex'
 
 export async function getSchedule() {
-  const month = dayjs().month() + 1
   try {
-    const response = await fetch(`${API_URL}?month=${month}`)
+    const response = await fetch(API_URL)
     if (!response.ok) {
       throw new Error('No se pudo obtener la data')
     }
@@ -17,18 +16,15 @@ export async function getSchedule() {
   }
 }
 
-export async function addAppointment(appointment: Appointment){
+export async function addAppointment(appointment: Appointment) {
   try {
-    const response = await fetch(
-      API_URL,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(appointment),
-      }
-    )
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(appointment),
+    })
     if (response.ok) {
       console.log('Peticion POST exitosa')
       // Realizar acciones adicionales si la petición fue exitosa
@@ -41,4 +37,3 @@ export async function addAppointment(appointment: Appointment){
     // Manejar el error de la petición
   }
 }
-

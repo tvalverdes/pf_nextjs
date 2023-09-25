@@ -25,8 +25,7 @@ export interface ValidForm {
 }
 
 export const SidebarIndex = () => {
-  const { register, handleSubmit, control } = useForm()
-  //const methods = useForm()
+  const { handleSubmit } = useForm()
   const [appointment, setAppointment] = useState<Appointment>({
     client_name: '',
     client_mail: '',
