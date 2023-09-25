@@ -31,6 +31,9 @@ export async function sendToIzi(appointment: Appointment) {
 
       body: JSON.stringify(data),
     })
+    console.log(IZI_URL)
+    console.log(TEST_KEY)
+    console.log(data)
     if (response.ok) {
       console.log(response.json())
       /* const responseData: PaymentResponse = await response.json()
