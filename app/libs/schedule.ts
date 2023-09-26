@@ -25,12 +25,8 @@ export async function addAppointment(appointment: Appointment) {
       },
       body: JSON.stringify(appointment),
     })
-    if (response.ok) {
-      console.log('Peticion POST exitosa')
-      // Realizar acciones adicionales si la petición fue exitosa
-    } else {
+    if (!response.ok) {
       console.error('Error en la petición POST response.ok')
-      // Realizar acciones adicionales en caso de error
     }
   } catch (error) {
     console.error('Error en la petición POST try-catch:', error)

@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Calendar } from './Calendar'
+import { Subject } from './Subject'
 import { AdviserData } from './adviserData'
 import { TextField, Button } from '@mui/material'
 import { useForm, Controller, FormProvider } from 'react-hook-form'
@@ -10,11 +11,12 @@ import { MailField } from './MailField'
 import dayjs, { Dayjs } from 'dayjs'
 import { addAppointment } from '@/app/libs/schedule'
 import { getNextValidDate } from '@/app/utils/date-filter'
-import { sendToIzi } from '@/app/libs/izi'
+import { payment } from '@/app/libs/izi'
 
 export interface Appointment {
   client_name: string
   client_mail: string
+  subject: string
   date: string
   time: string
 }
@@ -22,6 +24,7 @@ export interface Appointment {
 export interface ValidForm {
   validName: boolean
   validMail: boolean
+  validSubject: boolean
   validTime: boolean
 }
 
@@ -30,12 +33,14 @@ export const SidebarIndex = () => {
   const [appointment, setAppointment] = useState<Appointment>({
     client_name: '',
     client_mail: '',
+    subject: '',
     date: getNextValidDate(dayjs()).format('YYYY-MM-DD'),
     time: '',
   })
   const [isValid, setIsValid] = useState<ValidForm>({
     validName: false,
     validMail: false,
+    validSubject: false,
     validTime: false,
   })
 
@@ -49,8 +54,8 @@ export const SidebarIndex = () => {
   }
 
   const onSubmit = async (values: any) => {
-    //addAppointment(appointment)
-    sendToIzi(appointment)
+    addAppointment(appointment)
+    payment(appointment)
   }
 
   return (
@@ -71,6 +76,7 @@ export const SidebarIndex = () => {
           >
             <InputField />
             <MailField />
+            <Subject />
             <Calendar />
             <Button
               disabled={!isAllTrue}
