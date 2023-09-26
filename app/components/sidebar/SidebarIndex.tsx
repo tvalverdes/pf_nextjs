@@ -12,6 +12,7 @@ import dayjs, { Dayjs } from 'dayjs'
 import { addAppointment } from '@/app/libs/schedule'
 import { getNextValidDate } from '@/app/utils/date-filter'
 import { payment } from '@/app/libs/izi'
+import { MoreInfoText } from './MoreInfoText'
 
 export interface Appointment {
   client_name: string
@@ -19,6 +20,7 @@ export interface Appointment {
   subject: string
   date: string
   time: string
+  comment: string
 }
 
 export interface ValidForm {
@@ -36,6 +38,7 @@ export const SidebarIndex = () => {
     subject: '',
     date: getNextValidDate(dayjs()).format('YYYY-MM-DD'),
     time: '',
+    comment: '',
   })
   const [isValid, setIsValid] = useState<ValidForm>({
     validName: false,
@@ -78,6 +81,7 @@ export const SidebarIndex = () => {
             <MailField />
             <Subject />
             <Calendar />
+            <MoreInfoText />
             <Button
               disabled={!isAllTrue}
               type="submit"
