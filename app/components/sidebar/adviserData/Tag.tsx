@@ -9,7 +9,7 @@ export const Tag = () => {
         </span>
         <Time />
       </div>
-      <span>S/55</span>
+      <span>S/65</span>
     </>
   )
 }
