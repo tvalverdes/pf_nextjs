@@ -33,6 +33,10 @@ export default function RootLayout({
           name="description"
           content={metadata.description || null || undefined}
         />
+        <meta
+          name="keywords"
+          content={'finanzas, asesoría, educación financiera'}
+        />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={inter.className}>{children}</body>

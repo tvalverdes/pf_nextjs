@@ -5,12 +5,16 @@ import { Logo } from './Logo'
 import { GrMenu, GrClose } from 'react-icons/gr'
 
 const items = [
-  { text: 'Blog', href: 'https://pasionporlasfinanzas.com/blog/' },
-  { text: 'Apoyo', href: 'https://pasionporlasfinanzas.com/apoyo/' },
+  {
+    text: 'Asesoría',
+    href: 'https://asesoria.pasionporlasfinanzas.com',
+  },
   {
     text: 'Sobre nosotros',
     href: 'https://pasionporlasfinanzas.com/nosotros/',
   },
+  { text: 'Blog', href: 'https://pasionporlasfinanzas.com/blog/' },
+  { text: 'Apoyo', href: 'https://pasionporlasfinanzas.com/apoyo/' },
   { text: 'Contacto', href: 'https://pasionporlasfinanzas.com/contacto/' },
 ]
 
