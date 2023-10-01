@@ -44,6 +44,7 @@ export const LeftSide = () => {
             title={benefit.title}
             description={benefit.description}
             icon={benefit.icon}
+            
           />
         ))}
       </div>

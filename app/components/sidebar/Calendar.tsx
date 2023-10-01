@@ -21,7 +21,8 @@ export function Calendar() {
     const date = getNextValidDate(dayjs())
     return date
   })
-  const lastDayOfMonth = dayjs().add(1, 'month').endOf('month')
+  //const lastDayOfMonth = dayjs().add(1, 'month').endOf('month')
+  const lastDayOfDecember = dayjs().endOf('year').endOf('month')
   const arr: any[] = []
   const [schedule, setSchedule] = useState(arr)
 
@@ -74,7 +75,7 @@ export function Calendar() {
             shouldDisableDate={isWeekend}
             disablePast
             className="calendar flex justify-around place-content-around content-around"
-            maxDate={lastDayOfMonth}
+            maxDate={lastDayOfDecember}
             value={selectedDate}
             onChange={handleDateChange}
           />
