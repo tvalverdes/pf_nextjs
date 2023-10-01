@@ -23,7 +23,7 @@ const benefits = [
     icon: <PeopleIcon sx={{ color: '#0090D4', fontSize: '82px' }} />,
   },
   {
-    title: 'Atención al Cliente 24/7',
+    title: 'Atención al Cliente',
     description: '¿Tienes alguna duda? Contáctanos y te ayudaremos',
     icon: <SupportAgentIcon sx={{ color: '#0090D4', fontSize: '82px' }} />,
   },

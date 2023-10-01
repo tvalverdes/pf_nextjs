@@ -15,13 +15,13 @@ export function getMatchingTimes(selectedDate: string, schedule: any[] = []) {
 
 export const isWeekend = (date: Dayjs) => {
   const day = date.day()
-  return day === 0 || day === 6
+  return day === 0 || day === 6 || day === 5
 }
 
 export const getNextValidDate = (date: Dayjs) => {
-  let nextDate = date.add(1, 'day');
+  let nextDate = date.add(1, 'day')
   while (isWeekend(nextDate)) {
-    nextDate = nextDate.add(1, 'day');
+    nextDate = nextDate.add(1, 'day')
   }
-  return nextDate;
-};
+  return nextDate
+}
