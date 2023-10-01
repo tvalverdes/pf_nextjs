@@ -8,7 +8,7 @@ export const Profile = () => {
     <div>
       <Avatar
         alt="Andres Valverde"
-        src="/andres_valverde.png"
+        src="/andres_valverde.webp"
         sx={{ width: 72, height: 72 }}
       />
     </div>
