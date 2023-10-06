@@ -21,7 +21,6 @@ export function Calendar() {
     const date = getNextValidDate(dayjs())
     return date
   })
-  //const lastDayOfMonth = dayjs().add(1, 'month').endOf('month')
   const lastDayOfDecember = dayjs().endOf('year').endOf('month')
   const arr: any[] = []
   const [schedule, setSchedule] = useState(arr)
