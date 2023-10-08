@@ -8,7 +8,7 @@ export const IziForm = ({ token }: any) => {
         type="text/javascript"
         src="https://static.micuentaweb.pe/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
         kr-public-key={PUBLIC_PROD_KEY}
-        kr-post-url-success="https://asesoria.pasionporlasfinanzas.com/success"
+        kr-get-url-success="https://asesoria.pasionporlasfinanzas.com/success"
       />
       <div className="w-full mb-5">
         <h2 className="text-center font-semibold text-slate-700">
