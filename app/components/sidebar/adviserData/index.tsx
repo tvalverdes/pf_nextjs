@@ -10,7 +10,7 @@ export const AdviserData = () => {
         <Tag />
       </div>
       <div>
-        <Profile />
+        <Profile img="/andres_valverde.webp" />
       </div>
     </div>
   )

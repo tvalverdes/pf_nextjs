@@ -3,7 +3,7 @@
 html{
   margin: 0;
   padding: 0;
-  
+  overflow-y: scroll !important;
 }
 
 @tailwind base;
@@ -26,6 +26,42 @@ html{
 
 .calendar{
   border: 3px solid #e7ecef;
+}
+
+.kr-embedded {
+  width: 90% !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important; /* Divide el contenedor en 2 columnas */
+  grid-gap: 10px !important
+}
+g, .kr-icon-wrapper-content path{
+  fill: #0090D4 !important;
+}
+
+.kr-installment-number, .kr-first-installment-delay{
+  display: none !important;
+}
+.kr-help-icon-wrapper{
+  background-color: #0090D4 !important;
+}
+
+.kr-payment-button{
+  text-align: center !important;
+  background-color: #0090D4 !important;
+  width: 100% !important;
+  grid-column: span 2 !important;
+}
+.kr-form-error{
+  grid-column: span 2 !important;
+}
+
+.kr-pan{
+  grid-column: span 2 !important;
+}
+
+
+.kr-payment-button:hover{
+  background-color: #0481bc !important;
 }
 
 @layer components {

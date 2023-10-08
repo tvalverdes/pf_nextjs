@@ -1,10 +1,10 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Calendar } from './Calendar'
 import { Subject } from './Subject'
 import { AdviserData } from './adviserData'
-import { TextField, Button } from '@mui/material'
-import { useForm, Controller, FormProvider } from 'react-hook-form'
+import { Button } from '@mui/material'
+import { useForm } from 'react-hook-form'
 import { FormContext, SidebarContext } from './context'
 import { InputField } from './InputField'
 import { MailField } from './MailField'
@@ -13,6 +13,9 @@ import { addAppointment } from '@/app/libs/schedule'
 import { getNextValidDate } from '@/app/utils/date-filter'
 import { payment } from '@/app/libs/izi'
 import { MoreInfoText } from './MoreInfoText'
+import { PaymentModal } from '../payment_modal/PaymentModal'
+import { modalState } from '@/app/store/modalState'
+import { LoadingModal } from '../loading/LoadingModal'
 
 export interface Appointment {
   client_name: string
@@ -32,6 +35,9 @@ export interface ValidForm {
 
 export const SidebarIndex = () => {
   const { handleSubmit } = useForm()
+  const [token, setToken] = useState('')
+  const [loading, setLoading] = useState(false)
+  const { hide } = modalState()
   const [appointment, setAppointment] = useState<Appointment>({
     client_name: '',
     client_mail: '',
@@ -47,6 +53,8 @@ export const SidebarIndex = () => {
     validTime: false,
   })
 
+  const [enableModal, setEnableModal] = useState(false)
+
   const isAllTrue = Object.values(isValid).every((value) => value === true)
 
   const updateAppointment = (newAppointment: Appointment) => {
@@ -56,9 +64,19 @@ export const SidebarIndex = () => {
     setIsValid(newIsValid)
   }
 
-  const onSubmit = async (values: any) => {
+  const displayLoading = () => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
+  }
+
+  const onSubmit = async () => {
     addAppointment(appointment)
-    payment(appointment)
+    displayLoading()
+    setToken(await payment(appointment))
+    setEnableModal(true)
+    hide(false)
   }
 
   return (
@@ -88,11 +106,12 @@ export const SidebarIndex = () => {
               variant="contained"
               className="main-bg-color mb-5 mx-2"
             >
-              Separar Asesoría
+              {loading ? <LoadingModal /> : 'Agendar Asesoría'}
             </Button>
           </FormContext.Provider>
         </SidebarContext.Provider>
       </form>
+      {enableModal ? <PaymentModal token={token} /> : null}
     </div>
   )
 }
