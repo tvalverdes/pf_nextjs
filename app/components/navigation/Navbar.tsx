@@ -45,7 +45,12 @@ const Navbar = () => {
               </button>
               <ul className="hidden md:flex gap-x-8 text-black">
                 {items.map((item) => (
-                  <li className="item" key={item.href}>
+                  <li
+                    className={
+                      item.text === 'Asesoría' ? 'selecteditem' : 'item'
+                    }
+                    key={item.href}
+                  >
                     <Link href={item.href}>
                       <p>{item.text}</p>
                     </Link>
@@ -62,7 +67,13 @@ const Navbar = () => {
           >
             <ul className="text-black flex flex-col ps-4 gap-y-5">
               {items.map((item) => (
-                <li key={item.href}>
+                <li
+                  className={`w-fit ${
+                    item.text === 'Asesoría' ? 'selecteditem' : 'item'
+                  }
+                  `}
+                  key={item.href}
+                >
                   <Link href={item.href}>
                     <p>{item.text}</p>
                   </Link>

@@ -20,6 +20,12 @@ html{
   padding-bottom: 0px;
 }
 
+.selecteditem{
+  color: #0090D4;
+  border-bottom: 2px solid #0090D4;
+  padding-bottom: 0px;
+}
+
 .item{
   padding-bottom: 1px;
 }
