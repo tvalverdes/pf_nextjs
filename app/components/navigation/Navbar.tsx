@@ -10,7 +10,7 @@ const items = [
     href: 'https://asesoria.pasionporlasfinanzas.com',
   },
   {
-    text: 'Sobre nosotros',
+    text: 'Nosotros',
     href: 'https://pasionporlasfinanzas.com/nosotros/',
   },
   { text: 'Blog', href: 'https://pasionporlasfinanzas.com/blog/' },
@@ -35,22 +35,24 @@ const Navbar = () => {
             <div className={isMobile ? 'hidden' : ''}>
               <Logo />
             </div>
-            <button onClick={toggleMenu}>
-              {isMobile ? (
-                <GrClose className="md:hidden text-xl" />
-              ) : (
-                <GrMenu className="md:hidden text-xl" />
-              )}
-            </button>
-            <ul className="hidden md:flex gap-x-8 text-black">
-              {items.map((item) => (
-                <li className="item" key={item.href}>
-                  <Link href={item.href}>
-                    <p>{item.text}</p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className="flex justify-end md:justify-start items-center w-[40%]">
+              <button onClick={toggleMenu}>
+                {isMobile ? (
+                  <GrClose className="md:hidden text-xl" />
+                ) : (
+                  <GrMenu className="md:hidden text-xl" />
+                )}
+              </button>
+              <ul className="hidden md:flex gap-x-8 text-black">
+                {items.map((item) => (
+                  <li className="item" key={item.href}>
+                    <Link href={item.href}>
+                      <p>{item.text}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div
