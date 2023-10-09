@@ -20,7 +20,7 @@ export const IziForm = ({ token }: any) => {
         <p className="text-sm text-[#717171] font-normal">S/65</p>
       </div>
       <div id="iziform" className="kr-embedded" kr-form-token={token}>
-        <div className="kr-pan"></div>
+        <div className="kr-pan">Número de tarjeta</div>
         <div className="kr-expiry"></div>
         <div className="kr-security-code"></div>
 
