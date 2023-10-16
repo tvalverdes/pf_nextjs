@@ -70,7 +70,7 @@ export function Calendar() {
           <DateCalendar
             views={['day']}
             autoFocus
-            minDate={tomorrow}
+            minDate={minDate}
             shouldDisableDate={isWeekend}
             disablePast
             className="calendar flex justify-around place-content-around content-around"
