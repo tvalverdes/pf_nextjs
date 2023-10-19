@@ -72,10 +72,10 @@ export function Calendar() {
             autoFocus
             minDate={minDate}
             shouldDisableDate={isWeekend}
+            value={selectedDate}
             disablePast
             className="calendar flex justify-around place-content-around content-around"
             maxDate={lastDayOfDecember}
-            value={selectedDate}
             onChange={handleDateChange}
           />
         </LocalizationProvider>
@@ -84,4 +84,3 @@ export function Calendar() {
     </div>
   )
 }
-
