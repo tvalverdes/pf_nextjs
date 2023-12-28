@@ -21,7 +21,7 @@ export function Calendar() {
     const date = getNextValidDate(dayjs())
     return date
   })
-  const lastDayOfDecember = dayjs().endOf('year').endOf('month')
+  const maxDateAllowed = dayjs().add(3, 'month').endOf('month')
   const arr: any[] = []
   const [schedule, setSchedule] = useState(arr)
 
@@ -59,8 +59,8 @@ export function Calendar() {
   }
 
   let freeHoursOfDate = getMatchingTimes(
-    selectedDate.format('YYYY-MM-DD'),
-    schedule
+    selectedDate.format('YYYY-MM-DD')
+    //schedule
   )
 
   return (
@@ -75,7 +75,7 @@ export function Calendar() {
             value={selectedDate}
             disablePast
             className="calendar flex justify-around place-content-around content-around"
-            maxDate={lastDayOfDecember}
+            maxDate={maxDateAllowed}
             onChange={handleDateChange}
           />
         </LocalizationProvider>
