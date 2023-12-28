@@ -27,7 +27,6 @@ export const TimeSelect = (props: { hours: any }) => {
       updateValidForm({ ...validForm, validTime: true })
     }
   }
-  console.log(props)
   useEffect(() => {
     setTime('')
     updateAppointment({ ...appointment, time: '' })
@@ -47,6 +46,8 @@ export const TimeSelect = (props: { hours: any }) => {
           onChange={handleTimeChange}
           color={timeSelected ? 'success' : 'error'}
           error={!timeSelected}
+          inputProps={{MenuProps: {disableScrollLock: true}}}
+          
         >
           {props.hours.map((hour: any, index: number) => {
             return (
