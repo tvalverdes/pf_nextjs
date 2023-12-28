@@ -40,6 +40,7 @@ export const Subject = () => {
           onChange={handleSubjectChange}
           color={subjectSelected ? 'success' : 'error'}
           error={!subjectSelected}
+          inputProps={{MenuProps: {disableScrollLock: true}}}
         >
           <MenuItem value={'AFP'}>AFP</MenuItem>
           <MenuItem value={'INVERSIÓN'}>Inversión</MenuItem>
