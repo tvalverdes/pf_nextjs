@@ -27,7 +27,7 @@ export const TimeSelect = (props: { hours: any }) => {
       updateValidForm({ ...validForm, validTime: true })
     }
   }
-
+  console.log(props)
   useEffect(() => {
     setTime('')
     updateAppointment({ ...appointment, time: '' })

@@ -57,10 +57,9 @@ export function Calendar() {
     // Si el día siguiente es fin de semana, obtenemos el próximo lunes
     minDate = getNextValidDate(minDate)
   }
-
   let freeHoursOfDate = getMatchingTimes(
-    selectedDate.format('YYYY-MM-DD')
-    //schedule
+    selectedDate.format('YYYY-MM-DD'),
+    schedule
   )
 
   return (
