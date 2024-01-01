@@ -21,7 +21,7 @@ export function Calendar() {
     const date = getNextValidDate(dayjs())
     return date
   })
-  const maxDateAllowed = dayjs().add(3, 'month').endOf('month')
+  const maxDateAllowed = dayjs().add(2, 'month').endOf('month')
   const arr: any[] = []
   const [schedule, setSchedule] = useState(arr)
 
