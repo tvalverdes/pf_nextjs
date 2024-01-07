@@ -44,7 +44,7 @@ export const Subject = () => {
         >
           <MenuItem value={'AFP'}>AFP</MenuItem>
           <MenuItem value={'INVERSIÓN'}>Inversión</MenuItem>
-          <MenuItem value={'AHORRO'}>Ahorro</MenuItem>
+          <MenuItem value={'FINANZAS PERSONALES'}>FINANZAS PERSONALES</MenuItem>
         </Select>
       </FormControl>
     </>
