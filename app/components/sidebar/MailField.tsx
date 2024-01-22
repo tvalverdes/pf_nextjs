@@ -35,6 +35,7 @@ export const MailField = () => {
       helperText={helper}
       color={helper ? 'error' : 'success'}
       error={helper ? true : false}
+      InputLabelProps={{ shrink: true }}
     />
   )
 }
